@@ -1,62 +1,35 @@
 import React, { useState } from 'react';
 import onClickOutside from 'react-onclickoutside';
+import Up from '../../assets/up.svg';
+import Down from '../../assets/down.svg';
 
-function Dropdown({ title, items, multiSelect = false }) {
+
+
+function Dropdown({handleOnClick, selection, multiSelect = false }) {
   const [open, setOpen] = useState(false);
-  const [selection, setSelection] = useState([]);
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
 
-  function handleOnClick(item) {
-    if (!selection.some(current => current.id === item.id)) {
-      if (!multiSelect) {
-        setSelection([item]);
-      } else if (multiSelect) {
-        setSelection([...selection, item]);
-      }
-    } else {
-      let selectionAfterRemoval = selection;
-      selectionAfterRemoval = selectionAfterRemoval.filter(
-        current => current.id !== item.id
-      );
-      setSelection([...selectionAfterRemoval]);
-    }
-  }
-
-  function isItemInSelection(item) {
-    if (selection.some(current => current.id === item.id)) {
-      return true;
-    }
-    return false;
-  }
-
   return (
-    <div style={{width: '100px', position:'absolute', zIndex:'3000', marginLeft:'20rem'}} className="bg-white br3">
+    <div style={{width: '200px',height: '45px' ,position:'absolute', zIndex:'3000', marginLeft:'10rem', border: 'solid 1px black'}} className="bg-white br3 mt1 ">
       <div
         tabIndex={0}
-        className="dd-header"
-        role="button"
+        className="mt2"
+        // role="button"
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className="dd-header__title">
-          <p className="dd-header__title--bold">{title}</p>
-        </div>
-        <div className="dd-header__action">
-          <p style={{textAlign:'center'}}>{open ? 'Close' : 'Select'}</p>
+        
+        <div style={{textAlign:'right', cursor: 'pointer'}} >
+          {open ? <img src={Down} alt='down'/> : <img src={Up} alt='up'/> }
         </div>
       </div>
       {open && (
-        <ul className="dd-list">
-          {items.map((item,i) => (
-            <li className="dd-list-item" key={item[i]}>
-              <button className='w-100' type="button" onClick={() => handleOnClick(item)}>
-                <span>{item}</span>
-                <span>{isItemInSelection(item) && 'Selected'}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
+       <ul  className='w-100 bg-white'>
+         <li  className='pa2' onClick={() => handleOnClick('beer')}>Search by beer</li>
+         <li  className='pa2' onClick={() => handleOnClick('brewery')}>Search by brewery</li>
+         <li  className='pa2' onClick={() => handleOnClick('country')}>Search by country</li>
+       </ul>
       )}
     </div>
   );

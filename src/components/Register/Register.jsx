@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 
-const Register = ({onRouteChange}) => {
+const Register = ({onRouteChange, loadUser}) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,20 +20,38 @@ const Register = ({onRouteChange}) => {
         setPassword(event.target.value)
     }
 
-    const specialCharacters = ['!', '@', '#', "$", "%", "^", '&', '*', '(', ')']
-
+    
     const onSubmitSignIn = () => {
         if(!email.includes('@')) {
-            setSubMessage('Please include a @')
-        } else if(password.length < 6) {
-            setSubMessage('Your password is too short')
-        } else if(!password.match(/[$@#&!]+/)) {
-            setSubMessage('Your password must have at least 1 special character')
-        } else if(name === '') {
-            setSubMessage('Please include a name')
-        } else {
-            onRouteChange('home')
-        }
+                    setSubMessage('Please include a @')
+                } else if(password.length < 6) {
+                    setSubMessage('Your password is too short')
+                } 
+                else if(!password.match(/[$@#&!]+/) || !password.match(/[0-9]+/)) {
+                    setSubMessage('Your password must have at least 1 number and special character')
+                } else if(name === '') {
+                    setSubMessage('Please include a name')
+                } else {
+            //     fetch("http://localhost:5000/register", {
+            //         method: 'post',
+            //         headers: {'Content-Type': "application/json"},
+            //         body: JSON.stringify({
+            //             email: email,
+            //             password: password,
+            //             name: name
+            //         })
+            //     })
+            //   .then(response => response.json())
+            //   .then(data => {
+            //       console.log(data)
+            //      if(data) {
+            //         loadUser(data)
+                    onRouteChange('home')
+            //      }
+            //   })
+                    
+                }
+       
         
     }
     return (
@@ -79,7 +98,10 @@ const Register = ({onRouteChange}) => {
                     </fieldset>
                     
                     <div>
-                        <p onClick={onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">Register</p>    
+                    <Link to='/'>
+                    <p onClick={onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">Register</p>  
+                    </Link>
+                          
                     </div>
                 </div>
             </main>
@@ -88,3 +110,16 @@ const Register = ({onRouteChange}) => {
 }
 
 export default Register 
+
+  // if(!email.includes('@')) {
+            //         setSubMessage('Please include a @')
+            //     } else if(password.length < 6) {
+            //         setSubMessage('Your password is too short')
+            //     } 
+            //     else if(!password.match(/[$@#&!]+/) || !password.match(/[0-9]+/)) {
+            //         setSubMessage('Your password must have at least 1 number and special character')
+            //     } else if(name === '') {
+            //         setSubMessage('Please include a name')
+            //     } else {
+            //         onRouteChange('home')
+            //     }

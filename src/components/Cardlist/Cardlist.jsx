@@ -8,6 +8,7 @@ const Cardlist = ({beers}) => {
                 beers.map((user, i) => {
                  return (<Card 
                         key={i}
+                        id={beers[i].id}
                         beer={beers[i].beer}
                         brewery={beers[i].brewery}
                         style={beers[i].style}

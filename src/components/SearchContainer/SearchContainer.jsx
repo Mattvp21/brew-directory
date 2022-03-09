@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 
-const items = ['beer','brewery','country','score'];
 
-const SearchContainer = ({onInputChange}) => {
+const SearchContainer = ({onInputChange, handleOnClick, selection}) => {
     return (
-        <div className='flex justify-center pa2 flex-row bg-orange'>
-            <div className=' mh4'>
-                <input onChange={onInputChange} className=' br3 outline-0 pa3 ' placeholder='Search here...'/>
+        <div className='flex justify-center pa1 dib bg-orange'>
+            <div className='mr5 mh4'>
+                <input onChange={onInputChange} className='mr7 br3 outline-0 pa3 ' placeholder={`Search by ${selection}`}/>
             </div>
             <Dropdown 
-            items={items}
+            
+            handleOnClick={handleOnClick}
+            selection={selection}
             multiSelect
             />
         </div>

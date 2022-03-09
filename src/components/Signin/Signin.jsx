@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 
-const Signin = ({onRouteChange}) => {
+const Signin = ({onRouteChange, loadUser}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -12,7 +13,23 @@ const Signin = ({onRouteChange}) => {
     }
 
     const onSubmitSignIn = () => {
-        onRouteChange('home')
+    //     fetch("http://localhost:5000/signin", {
+    //         method: 'post',
+    //         headers: {'Content-Type': 'application/json'},
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password
+    //   })
+    //     }).then(response => response.json())
+    //     .then(user => {
+    //         console.log(user)
+    //         if(user.id){
+    //             loadUser(user)
+                onRouteChange('home')
+            // }
+       
+        // })
+        
     }
     return (
         <article className="br3 ba bg-orange b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -44,13 +61,18 @@ const Signin = ({onRouteChange}) => {
                         </div>
                     </fieldset>
                     <div>
-                        <input 
+                    <Link to='/'>
+                    <input 
                         onClick={onSubmitSignIn} 
                         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
-                        defaultValue='Sign In' />    
+                        defaultValue='Sign In' />   
+                    </Link>
                     </div>
                     <div>
-                        <p onClick={() => onRouteChange('Register')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">Register</p>    
+                    <Link to='/register'>
+                    <p onClick={() => onRouteChange('Register')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">Register</p>  
+                    </Link>
+                          
                     </div>
                 </div>
             </main>
