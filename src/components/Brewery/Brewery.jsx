@@ -39,7 +39,7 @@ const Brewery = ({match}) => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`http://localhost:5000/beers/${id}`)
+        fetch(`https://fast-castle-96848.herokuapp.com/beers/${id}`)
         .then(response => response.json())
         .then(beer => {
             if(isMounted) {

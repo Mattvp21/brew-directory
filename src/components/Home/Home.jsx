@@ -32,7 +32,7 @@ const filteredBeers = beers.filter(b => {
 })
   
 useEffect(() => {
-    fetch('http://localhost:5000/beers')
+    fetch('https://fast-castle-96848.herokuapp.com/beers')
     .then(response => response.json())
     .then(beer => {setBeers(beer)} )
 }, [])
