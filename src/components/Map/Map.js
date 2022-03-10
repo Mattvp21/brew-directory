@@ -61,44 +61,68 @@ export default function Map({singleBeer}) {
   }, []);
 
   const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
+    mapRef.current.panTo({ breweryLat, breweryLon });
     mapRef.current.setZoom(14);
   }, []);
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
-  return (
-    <div>
-      
+  if(breweryLat || breweryLon != null) {
+    return (
+      <div>
+        
+        
+        
+  
+        <Locate panTo={panTo} />
+        
+  
+        <GoogleMap
+        
+          id="map"
+          mapContainerStyle={mapContainerStyle}
+          zoom={18}
+          center={center}
+          options={options}
+          onClick={onMapClick}
+          onLoad={onMapLoad}
+        >
+          {markers.map((marker) => (
+            <Marker
+              key={`${marker.lat}-${marker.lng}`}
+              position={{ lat: marker.lat, lng: marker.lng }}
+              onClick={() => {
+                setSelected(marker);
+              }}
+              
+            />
+          ))}
+  
+  
+          {selected ? (
+            <InfoWindow
+              position={{ lat: selected.lat, lng: selected.lng }}
+              onCloseClick={() => {
+                setSelected(null);
+              }}
+            >
+              <div>
+                <p>{formatRelative(selected.time, new Date())}</p>
+              </div>
+            </InfoWindow>
+          ) : null}
+  
+        </GoogleMap>
+      </div>
+    );
+  } else {
+    return <h1>No map data</h1>
+  }
 
-      <Locate panTo={panTo} />
-      
+  }
 
-      <GoogleMap
-        id="map"
-        mapContainerStyle={mapContainerStyle}
-        zoom={18}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {markers.map((marker) => (
-          <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-            
-          />
-        ))}
-
-      </GoogleMap>
-    </div>
-  );
-}
+  
 
 function Locate({ panTo }) {
   return (
