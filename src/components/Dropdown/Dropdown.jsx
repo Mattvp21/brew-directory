@@ -6,6 +6,7 @@ import Down from '../../assets/down.svg';
 
 
 function Dropdown({handleOnClick, selection, multiSelect = false }) {
+  
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
   Dropdown.handleClickOutside = () => setOpen(false);
@@ -19,11 +20,10 @@ function Dropdown({handleOnClick, selection, multiSelect = false }) {
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        
-        <div style={{textAlign:'right', cursor: 'pointer'}} >
-          {open ? <img src={Down} alt='down'/> : <img src={Up} alt='up'/> }
-        </div>
+      <div style={{textAlign:'right', cursor: 'pointer'}} >
+        {open ? <img src={Down} alt='down'/> : <img src={Up} alt='up'/> }
       </div>
+    </div>
       {open && (
        <ul  className='w-100 bg-white'>
          <li  className='pa2' onClick={() => handleOnClick('brewery')}>Search by brewery</li>
@@ -31,7 +31,7 @@ function Dropdown({handleOnClick, selection, multiSelect = false }) {
          <li  className='pa2' onClick={() => handleOnClick('country')}>Search by Country</li>
        </ul>
       )}
-    </div>
+  </div>
   );
 }
 

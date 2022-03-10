@@ -14,8 +14,6 @@ const Cardlist = ({beers}) => {
                         style={beers[i].style}
                         state={beers[i].state}
                         country={beers[i].country}
-                        
-                        
                     />)  
                 })
             }

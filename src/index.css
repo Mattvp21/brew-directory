@@ -54,6 +54,7 @@ li {
   background-size: 400%;
   -webkit-transition: background .5s ease-in-out;
   transition: background .5s ease-in-out;
+  text-decoration: none;
 }
 li:hover {
   color: white;

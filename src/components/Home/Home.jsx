@@ -7,43 +7,38 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary';
 
 function Home() {
   const [beers, setBeers] = useState([]);
-  
   const [selection, setSelection] = useState('');
   const [searchfield, setSearchField] = useState('');
   
- 
-
-  function handleOnClick(value) {
+function handleOnClick(value) {
     setSelection(value)
 }
 
-  const onInputChange = (event) => {
+const onInputChange = (event) => {
     setSearchField(event.target.value)
-  }
+}
 
-  const filteredBeers = beers.filter(b => {
+const filteredBeers = beers.filter(b => {
     switch(selection) {
-      
-      case 'brewery':
+        case 'brewery':
         return b.name.toLowerCase().includes(searchfield.toLowerCase());
         case 'type':
-          return b.brewery_type.toLowerCase().includes(searchfield.toLowerCase());
-          case 'country':
-            return b.country.toLowerCase().includes(searchfield.toLowerCase());
-              default:
-                return b.name.toLowerCase().includes(searchfield.toLowerCase()); 
+        return b.brewery_type.toLowerCase().includes(searchfield.toLowerCase());
+        case 'country':
+        return b.country.toLowerCase().includes(searchfield.toLowerCase());
+        default:
+        return b.name.toLowerCase().includes(searchfield.toLowerCase()); 
     }
-             
-  })
+})
   
-    useEffect(() => {
-      fetch('http://localhost:5000/beers')
-      .then(response => response.json())
-      .then(beer => {setBeers(beer)} )
-    }, []) 
-  return (
-     <div className='app'>
+useEffect(() => {
+    fetch('http://localhost:5000/beers')
+    .then(response => response.json())
+    .then(beer => {setBeers(beer)} )
+}, [])
 
+return (
+        <div className='app'>
             <div>
               <SearchContainer 
               onInputChange={onInputChange} 
@@ -52,13 +47,9 @@ function Home() {
               />
               <ErrorBoundary>
                 <Cardlist beers={filteredBeers}  />
-              </ErrorBoundary>
-              
+              </ErrorBoundary>  
             </div>
-     </div>
-    //
-    //
-   
+        </div>
    );
 }
 
