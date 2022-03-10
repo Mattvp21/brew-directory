@@ -1,11 +1,11 @@
 import React from 'react';
 import 'animate.css';
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const Card = ({id, beer, brewery, style, country, state, score}) => {
     
     return (
-        <div style={{width: '275px'}} className='animate__animated animate__fadeIn tc bg-light-yellow br3 pa3 ma3 dib bw2 shadow-5'>
+        <div style={{width: '275px'}} className='card animate__animated animate__fadeIn tc  br3 pa3 ma3 dib bw2 shadow-5'>
             <div>
                
                 <h1>{beer}</h1>
@@ -15,7 +15,7 @@ const Card = ({id, beer, brewery, style, country, state, score}) => {
                 <p>{country}</p>
                 <p>{state}</p>
                 <p>{score}</p>
-                <Link to={'/beers/' + id + beer + style + country + state + score}>
+                <Link to={'/beers/' + id}>
                 <li style={{listStyle: 'none'}} className='bg-black white pa2 w-100'>More Info</li>
                 </Link>
                 

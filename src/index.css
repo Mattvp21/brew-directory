@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: var(--brown);
+  background-color: var(--stout);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;800&display=swap');
@@ -30,6 +30,9 @@ ul {
   cursor: pointer;
 }
 
+nav{
+  background-color: var(--beerGold);
+}
 
 
 
@@ -56,6 +59,14 @@ li:hover {
   color: white;
   background-position: 0;
   transition: .5s ease-in-out;
+}
+
+.card {
+  background-color: var(--darkGold);
+}
+
+.search {
+  background-color: var(--brown);
 }
 
 

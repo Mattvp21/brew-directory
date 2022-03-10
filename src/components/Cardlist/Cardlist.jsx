@@ -9,12 +9,13 @@ const Cardlist = ({beers}) => {
                  return (<Card 
                         key={i}
                         id={beers[i].id}
-                        beer={beers[i].beer}
-                        brewery={beers[i].brewery}
+                        beer={beers[i].name}
+                        brewery={beers[i].brewery_type}
                         style={beers[i].style}
-                        country={beers[i].country}
                         state={beers[i].state}
-                        score={beers[i].score}
+                        country={beers[i].country}
+                        
+                        
                     />)  
                 })
             }

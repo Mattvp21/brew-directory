@@ -26,9 +26,9 @@ function Dropdown({handleOnClick, selection, multiSelect = false }) {
       </div>
       {open && (
        <ul  className='w-100 bg-white'>
-         <li  className='pa2' onClick={() => handleOnClick('beer')}>Search by beer</li>
          <li  className='pa2' onClick={() => handleOnClick('brewery')}>Search by brewery</li>
-         <li  className='pa2' onClick={() => handleOnClick('country')}>Search by country</li>
+         <li  className='pa2' onClick={() => handleOnClick('type')}>Search by brewery type</li>
+         <li  className='pa2' onClick={() => handleOnClick('country')}>Search by Country</li>
        </ul>
       )}
     </div>
