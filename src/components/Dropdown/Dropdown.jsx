@@ -12,7 +12,7 @@ function Dropdown({handleOnClick, selection, multiSelect = false }) {
   Dropdown.handleClickOutside = () => setOpen(false);
 
   return (
-    <div style={{width: '200px',height: '45px' ,position:'absolute', zIndex:'3000', marginLeft:'10rem', border: 'solid 1px black'}} className="bg-white br3 mt1 ">
+    <div style={{width: '190px',height: '45px' , zIndex:'3000', border: 'solid 1px black'}} className="bg-white br3 mt1 ">
       <div
         tabIndex={0}
         className="mt2"
